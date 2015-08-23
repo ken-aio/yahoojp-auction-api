@@ -12,12 +12,12 @@ module YahooJp
         opts.merge!(YahooJp::Api.options)
         if token.nil? then
           url = ['http:/', @@base_uri, v, api].join('/')
-          YahooJp::Request.get(url, opts)
+          YahooJp::Request.get(url, opts, 'xml')
         else
           opts.merge!(YahooJp::Api.options)
           opts.delete(:appid)
           url = ['https:/', @@base_uri, v, api].join('/')
-          YahooJp::Request.get_with_auth(url, token, opts)
+          YahooJp::Request.get_with_auth(url, token, opts, 'xml')
         end
       end
 
