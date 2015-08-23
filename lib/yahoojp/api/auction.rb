@@ -8,15 +8,10 @@ module YahooJp
 
       def base(api, v, opts={})
         token = opts.delete(:token)
-        opts[:output] = 'json'
-        opts[:callback] = 'callback'
+        opts[:output] = 'xml'
         opts.merge!(YahooJp::Api.options)
         if token.nil? then
-          if v == 'V1' then
-            url = ['http:/', @@base_uri, v, api].join('/')
-          elsif v == 'V2' then
-            url = ['http:/', @@base_uri, v, 'json', api].join('/')
-          end
+          url = ['http:/', @@base_uri, v, api].join('/')
           YahooJp::Request.get(url, opts)
         else
           opts.merge!(YahooJp::Api.options)
